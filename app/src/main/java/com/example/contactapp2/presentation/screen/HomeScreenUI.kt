@@ -59,7 +59,7 @@ fun HomeScreenUI(
     }
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = { navController.navigate(AddEditScreen) }) {
+            FloatingActionButton(onClick = { navController.navigate(AddEditScreen(null)) }) {
                 Icon(imageVector = Icons.Rounded.Add, null)
             }
         },
@@ -79,6 +79,13 @@ fun HomeScreenUI(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(colorBrush)
+                                .clickable {
+                                    navController.navigate(
+                                        AddEditScreen(
+                                            it.id
+                                        )
+                                    )
+                                }
                         )
 
                         Row(modifier = Modifier.fillMaxSize()) {

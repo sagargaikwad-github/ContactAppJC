@@ -1,6 +1,5 @@
 package com.example.contactapp2.presentation.screen
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,13 +23,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.contactapp2.ContactAppViewModel
 import com.example.contactapp2.database.tables.Contact
-import com.example.contactapp2.presentation.navigation.AddEditScreen
 
 
 @Composable
 fun AddEditScreenUI(
     navController: NavController,
-    viewModel: ContactAppViewModel
+    viewModel: ContactAppViewModel,
+    id: Int?
 ) {
     var name by rememberSaveable {
         mutableStateOf("")
@@ -90,7 +89,14 @@ fun AddEditScreenUI(
         Button(
             onClick = {
 
-                viewModel.addUpdateContact(Contact(name = name, number = phone, email = email))
+                viewModel.addUpdateContact(
+                    Contact(
+                        id = id,
+                        name = name,
+                        number = phone,
+                        email = email
+                    )
+                )
                 navController.navigateUp()
 
             }, modifier = Modifier
